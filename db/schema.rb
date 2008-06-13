@@ -26,15 +26,15 @@ ActiveRecord::Schema.define(:version => 20080613050513) do
     t.string  "salt",                     :null => false
   end
 
-  create_table "user_openids", :force => true do |t|
+  create_table "openids", :force => true do |t|
     t.string   "openid_url",               :null => false
     t.integer  "user_id",    :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "user_openids", ["openid_url"], :name => "index_user_openids_on_openid_url"
-  add_index "user_openids", ["user_id"], :name => "index_user_openids_on_user_id"
+  add_index "openids", ["openid_url"], :name => "index_openids_on_openid_url"
+  add_index "openids", ["user_id"], :name => "index_openids_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40

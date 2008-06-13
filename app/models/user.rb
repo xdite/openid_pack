@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   include Authentication::ByPassword
   include Authentication::ByCookieToken
 
-  has_many :openids, :class_name => "UserOpenid", :dependent => :destroy
+  has_many :openids, :dependent => :destroy
 
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40

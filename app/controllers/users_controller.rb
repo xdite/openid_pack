@@ -5,7 +5,12 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
- 
+
+  def edit                                                                  
+    @user = User.find(current_user.id)                                      
+    @user_openids = @user.openids
+  end
+
   def create
     logout_keeping_session!
     @user = User.new(params[:user])
