@@ -20,18 +20,17 @@
 <ul>
 <% @user_openids.map do |o| %>
 <li>
-<%= link_to('[delete this openid]', user_user_openid_path(@user, o), :confirm => "Are you sure?", :method => :delete) %>
+<%= link_to('[delete this openid]', user_openid_path(@user, o), :confirm => "Are you sure?", :method => :delete) %>
   <%= link_to(o.denormalized_url, o.openid_url) %> </li>
 <% end %>
 </ul>
 </p>
 <br/>
-<%= link_to("Add OpenID to account", new_user_user_openid_url(@user)) %></p>
+<%= link_to("Add an OpenID", open_id_complete_on_user_path) %>
 
 
 <p>
   <%= submit_tag 'Save', :disable_with => "Saving&hellip;" %>
   <%= link_to 'logout', logout_url %>
-  <%= link_to "destroy account", user_path(@user), :method => :delete %>
 </p>
 <% end -%>

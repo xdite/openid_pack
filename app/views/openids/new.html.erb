@@ -1,0 +1,24 @@
+<h2 class="title">Add an OpenID</h2>
+
+<%= error_messages_for :openid %>
+
+<% form_for :openid, :url => open_id_complete_on_user_path do |f| %>
+<div class="basic-form">
+    <label for="openid_url">OpenID</label>
+    <%= text_field_tag "openid_url", "http://" %>
+    <p>
+        <%= submit_tag 'Authenticate', :disable_with => "Adding&hellip;" %>
+    </p>
+
+    <p>E.g.</p>
+    <ul>
+        <li>Flickr: http://www.flickr.com/photos/yourname</li>
+        <li>Blogger: http://yourblog.blogspot.com</li>
+        <li>ClaimID: http://claimid.com/yourname</li>
+    </ul>
+</div>
+<% end %>
+
+<%= link_to '&#171; Back', edit_user_path(current_user) %>
+
+

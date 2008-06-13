@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
 
+  before_filter :login_required, :only => [:edit, :update]
+
   # render new.rhtml
   def new
     @user = User.new
