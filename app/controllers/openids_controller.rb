@@ -3,7 +3,7 @@ class OpenidsController < ApplicationController
   before_filter :login_required
 
   def new
-    user_openid = Openid.new
+    user_openid = UserOpenid.new
   end
 
   def create
@@ -34,7 +34,7 @@ class OpenidsController < ApplicationController
     authenticate_with_open_id(openid_url, :required => [:nickname, :email]) do |result, identity_url, registration|
       if result.successful?
         identity_url = identity_url.gsub(%r{/$},'')
-        current_user_openid = Openid.new(:user_id => current_user.id, :openid_url => identity_url )
+        current_user_openid = UserOpenid.new(:user_id => current_user.id, :openid_url => identity_url )
         respond_to do |format|
           format.html{
             if current_user_openid.save

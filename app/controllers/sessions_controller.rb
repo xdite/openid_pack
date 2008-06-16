@@ -26,7 +26,7 @@ protected
     authenticate_with_open_id(openid_url, :required => [:nickname, :email]) do |result, identity_url, registration|
       if result.successful?
         identity_url = identity_url.gsub(%r{/$},'')
-        @user_openid = Openid.find_by_openid_url(identity_url)
+        @user_openid = UserOpenid.find_by_openid_url(identity_url)
         if @user_openid
           self.current_user = @user_openid.user
           successful_login

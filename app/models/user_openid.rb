@@ -1,4 +1,4 @@
-class Openid < ActiveRecord::Base
+class UserOpenid < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :openid_url

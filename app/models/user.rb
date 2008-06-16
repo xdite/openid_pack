@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
   include Authentication::ByPassword
   include Authentication::ByCookieToken
 
-  has_many :openids, :dependent => :destroy
+  has_many :openids, :class_name => "UserOpenid", :dependent => :destroy
+
+  before_validation_on_create :make_user_openid
 
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
@@ -21,6 +23,10 @@ class User < ActiveRecord::Base
   validates_format_of       :email,    :with => RE_EMAIL_OK, :message => MSG_EMAIL_BAD
 
   
+
+  def make_user_openid
+    self.openids.build(:openid_url => identity_url) unless identity_url.blank?
+  end
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
