@@ -1,6 +1,7 @@
 class OpenidsController < ApplicationController
 
   before_filter :login_required
+  skip_before_filter :verify_authenticity_token
 
   def new
     user_openid = UserOpenid.new
